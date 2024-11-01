@@ -1,5 +1,6 @@
 import chatConnection from "./Chat";
 import showNotification from "./Notification";
+import { useState, useEffect } from "react";
 
 function ChatRoom({roomId}){
     const [ serverUrl, setServerUrl ] = useState('https://localhost:1234');

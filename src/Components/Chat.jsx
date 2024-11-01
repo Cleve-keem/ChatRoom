@@ -18,9 +18,9 @@ function chatConnection({ roomId, serverUrl }){
             intervalId = setInterval(() => {
                 if (messageCallback) {
                     if (Math.random() > 0.5) {
-                        messageCallback('Hey');
+                        messageCallback('hey');
                     } else {
-                        messageCallback('Lol');
+                        messageCallback('lol');
                     }
                 }
             }, 2000);
@@ -40,6 +40,7 @@ function chatConnection({ roomId, serverUrl }){
                 throw Error('Only "message" event is supported')
             }
             messageCallback = callback;
+
         }
 
     }
