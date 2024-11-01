@@ -1,26 +1,17 @@
-import chatConnection from "./Chat";
+import { useState } from "react";
+import useChatRoom from "./useChatRoom";
 import showNotification from "./Notification";
-import { useState, useEffect } from "react";
 
 function ChatRoom({roomId}){
-    const [ serverUrl, setServerUrl ] = useState('https://localhost:1234');
+    const [serverUrl, setServerUrl] = useState('https://localhost:1234');
 
-    useEffect(() => {
-
-        const options = {
-            serverUrl: serverUrl,
-            roomId: roomId
-        };
-        
-        const connection = chatConnection(options);
-        connection.on('message', (msg) => {
+    useChatRoom({
+        roomId: roomId,
+        serverUrl: serverUrl,
+        onReceiveMessage(msg) {
             showNotification('New message: ' + msg);
-        });
-
-        connection.connect();
-
-        return () => connection.disconnect();
-    }, [roomId, serverUrl]);
+        }
+    })
 
     return (
         <>
